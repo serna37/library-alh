@@ -102,8 +102,8 @@ erDiagram
 # API IF
 |status|method|endpoint|feature|auth|remarks|
 |--|--|--|--|--|--|
-|<ul><li>[ ] </ul>|`POST`|`/sign/up`|sign up|no auth||
-|<ul><li>[ ] </ul>|`POST`|`/sign/in`|sign in|no auth||
+|<ul><li>[x] </ul>|`POST`|`/sign/up`|sign up|no auth||
+|<ul><li>[x] </ul>|`POST`|`/sign/in`|sign in|no auth||
 |<ul><li>[ ] </ul>|`POST`|`/sign/out`|sign out|no auth||
 |<ul><li>[ ] </ul>|`POST`|`/profile`|get profile.|auth required||
 |<ul><li>[ ] </ul>|`POST`|`/book/search`|search books|no auth||
