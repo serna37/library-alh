@@ -2,4 +2,4 @@ python-dotenv
 flask
 flask-cors
 cerberus
-pandas 
+pandas
