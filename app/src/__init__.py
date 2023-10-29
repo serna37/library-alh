@@ -17,4 +17,6 @@ with open(Path(__file__).resolve().parent.joinpath('../whitelist.txt'), 'r') as 
 sql.create_all()
 
 # regist facade
+from src.facade import ping as _
 from src.facade import sign as _
+from src.facade import book as _

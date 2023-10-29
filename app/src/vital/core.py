@@ -11,15 +11,12 @@ def authentication():
     def auth(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            token = request.cookies.get('token')
-            print(f"token : {token}")
-            header = request.headers.get('x-auth-header')
-            print(f"header : {header}")
-            # TODO DBみる。useridをヘッダで受け取り、cookieの値とtokenが同じでOK
-            print('===== come to auth util =====')
-            if not request.headers.get('x-auth-header') == 'alh03test55book':
-                print('auth NG')
-                return jsonify('error'), 400
+            token = request.cookies.get('token', '')
+            header = request.headers.get('x-auth-header', '')
+            dt = dict(mail=header, token=token)
+            df = sql.select('SELECT COUNT(id) FROM trn_users WHERE mail_address = :mail AND token = :token', dt)
+            if df.iat[0, 0] == 0:
+                return jsonify('unauthorized'), 401
             return func(*args, **kwargs)
         wrapper.__name__ = func.__name__
         return wrapper

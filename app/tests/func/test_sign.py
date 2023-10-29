@@ -9,7 +9,7 @@ class TestSign():
     def signup(self, client, username, mailaddress, password):
         return client.post('/sign/up', json=dict(user_name=username, mail_address=mailaddress, password=password))
 
-    OK_REQ = ('test', 'test@example.com', 'test-password')
+    OK_REQ = ('test', 'singtest@example.com', 'test-password')
 
     EMG_NULL = 'null value not allowed'
     EMG_EMPTY = 'empty values not allowed'
@@ -59,7 +59,7 @@ class TestSign():
     def signin(self, client, mail_address, password):
         return client.post('/sign/in', json=dict(mail_address=mail_address, password=password))
 
-    OK_REQ2 = ('test', 'test2@example.com', 'test-password')
+    OK_REQ2 = ('test', 'signtest2@example.com', 'test-password')
 
     @pytest.fixture()
     def pre_signin(self, client):
