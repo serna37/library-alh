@@ -86,17 +86,20 @@ erDiagram
     %% books
     mst_books ||--|| mst_books_img : img
     mst_books ||--|{ mst_books_stock : stock_manage
+    mst_books ||--o{ mst_book_attr : attribute
+    mst_book_attr }o--|| mst_attributes : attribute
     mst_books_publisher ||--|{ mst_books : books
-    %% actions
-    mst_books ||--o{ trn_remarks : comments
-    trn_remarks }o--|| trn_users : comments
+    %% history
+    mst_books ||--o{ trn_action_history  : history
+    trn_action_history }o--|| trn_users : history
+    %% action
+    mst_books ||--o{ trn_remarks : action
+    trn_remarks }o--|| trn_users : action
     %% rental
-    mst_books ||--|| trn_rental_state : state
+    mst_books ||--|| trn_rental_state : rental
+    trn_rental_state }o--|| trn_users : rental
     mst_books ||--|| trn_rental_temp : tmp
-    mst_books ||--o{ trn_rental_return_history  : history
-    trn_rental_state }o--|| trn_users : tmp
     trn_rental_temp }o--|| trn_users : tmp
-    trn_rental_return_history }o--|| trn_users : history
 ```
 
 # API IF
