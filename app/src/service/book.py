@@ -11,6 +11,6 @@ def addpublisher(data):
         return {'code': 20, 'status': 'error', 'msg': 'publisher name duplicated.'}
 
     # insert
-    sql.df_insert('mst_books_publisher', [data])
+    sql.insert('mst_books_publisher', [data])
     return {'code': 0, 'status': 'success', 'msg': 'publisher confirmed.'}
 
