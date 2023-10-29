@@ -104,12 +104,14 @@ erDiagram
 |--|--|--|--|--|--|
 |<ul><li>[x] </ul>|`POST`|`/sign/up`|sign up|no auth||
 |<ul><li>[x] </ul>|`POST`|`/sign/in`|sign in|no auth||
-|<ul><li>[ ] </ul>|`POST`|`/sign/out`|sign out|no auth||
-|<ul><li>[ ] </ul>|`POST`|`/profile`|get profile.|auth required||
+|<ul><li>[ ] </ul>|`POST`|`/user/profile`|get profile.|auth required||
+|<ul><li>[ ] </ul>|`POST`|`/book/addpublisher`|add publishers.|auth required||
+|<ul><li>[ ] </ul>|`POST`|`/book/getpublishers`|get publishers.|auth required||
+|<ul><li>[ ] </ul>|`POST`|`/book/getocr`|get ocr about book.|auth required||
+|<ul><li>[ ] </ul>|`POST`|`/book/donation`|donate books.|auth required||
 |<ul><li>[ ] </ul>|`POST`|`/book/search`|search books|no auth||
 |<ul><li>[ ] </ul>|`POST`|`/book/detail`|show a book|no auth||
 |<ul><li>[ ] </ul>|`POST`|`/action/commnet`|set comment, star|auth required|on detail view|
 |<ul><li>[ ] </ul>|`POST`|`/action/fav`|set favorit|auth required|on list view, detail view|
 |<ul><li>[ ] </ul>|`POST`|`/action/rental`|rental a book.|auth required|on detail view|
 |<ul><li>[ ] </ul>|`POST`|`/action/return`|return a book.|auth required|on renting view, detail view|
-|<ul><li>[ ] </ul>|`POST`|`/book/donation`|donate books.|auth required||

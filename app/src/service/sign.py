@@ -16,7 +16,7 @@ def singup(data):
     data['token'] = token
     # 4. insert data
     df = [data]
-    sql.df_insert(df)
+    sql.df_insert('trn_users', df)
     # 5. return auth info
     return {'code': 0, 'status': 'success', 'msg': 'sign up success.'}, data['mail_address'], token
 

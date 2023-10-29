@@ -85,11 +85,11 @@ def _insert(con, query, data_json):
     #df_data = pandas.DataFrame(data=data, columns=df.columns)
     #df_data.to_sql(name=table, con=con, if_exists='append', index=False)
 
-def df_insert(df_json):
-    _exe(_df_insert, df_json)
+def df_insert(table, df_json):
+    _exe(_df_insert, table, df_json)
 
-def _df_insert(con, df_json):
-    pandas.DataFrame(df_json).to_sql('trn_users', con, if_exists='append', index=False)
+def _df_insert(con, table, df_json):
+    pandas.DataFrame(df_json).to_sql(table, con, if_exists='append', index=False)
 
 # TODO
 def upsert(con, data, table, select_1):
