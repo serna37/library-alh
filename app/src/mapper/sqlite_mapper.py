@@ -1,6 +1,7 @@
 import os
 import glob
 from pathlib import Path
+from os.path import split
 import sqlite3
 import pandas
 
@@ -16,6 +17,20 @@ def _create_all(con):
         with open(ddl, 'r', encoding='utf-8') as f:
             query = f.read()
             con.execute(query)
+
+def munpilate_all():
+    """Apply DML
+    """
+    _exe(_dml)
+
+def _dml(con):
+    pt = os.environ.get('DML', '')
+    dml_path = Path(__file__).resolve().parent.joinpath(pt)
+    dmls = glob.glob(f'{dml_path}/*.csv')
+    for dml in dmls:
+        table_name = split(dml)[1][0:-4]
+        df = pandas.read_csv(dml, dtype=object)
+        df.to_sql(table_name, con=con, if_exists="append", index=False)
 
 def select(query, data_json):
     """SELECT as DataFrame

@@ -7,12 +7,16 @@ from src.mapper import sqlite_mapper as sql
 def client():
     src.app.config['TESTING'] = True
     os.environ['DATABASE'] = 'app/test.db'
+    os.environ['DML'] = '../../dml-test'
 
-    # drop table
+    print('=========== Initiate DB ===========')
+    print('Truncate TestDB File')
     os.remove('app/test.db')
-    # create table by DDL
+    print('Apply DDL')
     sql.create_all()
-    # TODO insert test data
+    print('Apply Test DML')
+    sql.munpilate_all()
+    print('=========== Prepared. ===========')
 
     print('=========== START TEST ===========')
     with src.app.test_client() as client:
