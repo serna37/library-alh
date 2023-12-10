@@ -14,3 +14,26 @@ def addpublisher(data):
     sql.insert('mst_books_publisher', [data])
     return {'code': 0, 'status': 'success', 'msg': 'publisher confirmed.'}
 
+def search(data):
+    limit = 10
+    offset = data['offset']
+    query = '''
+        SELECT
+            mb.book_name
+            ,mb.author_name
+            ,mbp.publisher_name
+            ,mb.published_at
+            ,mbi.img book_img
+            ,mbp.img publisher_img
+            ,ma.attribute
+        FROM mst_books mb
+        INNER JOIN mst_books_publisher mbp ON mb.publisher_cd = mbp.publisher_cd
+        INNER JOIN mst_books_img mbi ON mb.id = mbi.book_id
+        INNER JOIN mst_book_attr mba ON mb.id = mba.book_id
+        INNER JOIN mst_attributes ma ON mba.attribute_id = ma.attribute_id
+        LIMIT :limit OFFSET :offset
+        '''
+    df = sql.select(query, dict(limit=limit, offset=offset))
+    ans = df.to_json(orient='records')
+    return {'code': 0, 'status': 'success', 'msg': 'searched.', 'data': ans}
+

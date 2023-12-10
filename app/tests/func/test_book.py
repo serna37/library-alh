@@ -1,4 +1,5 @@
 import pytest
+import json
 from src.mapper import sqlite_mapper as sql
 
 class TestBook:
@@ -64,4 +65,18 @@ class TestBook:
         assert 200 == rv.status_code
         assert rv.json == {'code': 20, 'status': 'error', 'msg': 'publisher name duplicated.'}
 
+    # =========================
+    # search
+    # !! depends on test data by DML
+    # =========================
+    def test_search_success(self, client):
+        """ SUCCESS """
+        rv = client.post('/book/search', json=dict(offset=0))
+        assert 200 == rv.status_code
+        # assert rv.json == {'code': 0, 'status': 'success', 'msg': 'searched.', 'data': '[]'}
+        # print(rv.json['data'])
+        datas = rv.json['data']
+        rvobj = json.loads(datas)
+        print(rvobj[0])
+        assert rvobj[0]['book_name'] == 'test-1-1'
 

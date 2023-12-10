@@ -45,3 +45,18 @@ def donation():
 # donation
 # ===============
 
+# ===============
+# search
+# ===============
+search_schema = {
+    'offset': {
+        'type': 'integer',
+        'required': True
+    }
+}
+@app.route('/book/search', methods=['POST'])
+@core.validation(search_schema)
+def search():
+    res = service.search(request.json)
+    return jsonify(res), 200
+
