@@ -118,3 +118,21 @@ erDiagram
 |<ul><li>[ ] </ul>|`POST`|`/action/fav`|set favorit|auth required|on list view, detail view|
 |<ul><li>[ ] </ul>|`POST`|`/action/rental`|rental a book.|auth required|on detail view|
 |<ul><li>[ ] </ul>|`POST`|`/action/return`|return a book.|auth required|on renting view, detail view|
+
+# Commands
+
+## test
+```
+pytest -vs
+```
+## run dev
+```
+python app/server.py
+```
+
+## docker build & run
+```
+cd ~/git/library-alh \
+&& docker build -t library-alh:latest . \
+&& docker images | grep -e 'library-alh' -e 'latest' | awk '{print $3}' | xargs -I{} docker run {}
+```
