@@ -14,6 +14,7 @@ def _create_all(con):
     ddl_path = Path(__file__).resolve().parent.joinpath('../../ddl')
     ddls = glob.glob(f'{ddl_path}/*.sql')
     for ddl in ddls:
+        print(ddl)
         with open(ddl, 'r', encoding='utf-8') as f:
             query = f.read()
             con.execute(query)
@@ -29,6 +30,7 @@ def _dml(con):
     dmls = glob.glob(f'{dml_path}/*.csv')
     for dml in dmls:
         table_name = split(dml)[1][0:-4]
+        print(table_name)
         df = pandas.read_csv(dml, dtype=object)
         df.to_sql(table_name, con=con, if_exists="append", index=False)
 
