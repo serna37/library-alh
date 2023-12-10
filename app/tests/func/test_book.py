@@ -74,9 +74,7 @@ class TestBook:
         rv = client.post('/book/search', json=dict(offset=0))
         assert 200 == rv.status_code
         # assert rv.json == {'code': 0, 'status': 'success', 'msg': 'searched.', 'data': '[]'}
-        # print(rv.json['data'])
-        datas = rv.json['data']
-        rvobj = json.loads(datas)
-        print(rvobj[0])
-        assert rvobj[0]['book_name'] == 'test-1-1'
+        print(rv.json)
+        assert rv.json['data'][0]['book_name'] == 'test-1-1'
+
 
