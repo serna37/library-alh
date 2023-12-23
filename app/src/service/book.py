@@ -17,7 +17,7 @@ def addpublisher(data):
 
 def search(data):
     limit = 3
-    offset = data['offset']
+    args = dict(limit=limit, offset=data['offset'])
     query = '''
         SELECT
             mb.id
@@ -33,10 +33,35 @@ def search(data):
         INNER JOIN mst_books_img mbi ON mb.id = mbi.book_id
         INNER JOIN mst_book_attr mba ON mb.id = mba.book_id
         INNER JOIN mst_attributes ma ON mba.attribute_id = ma.attribute_id
+        WHERE 1 = 1
+    '''
+
+    if data['book_name']:
+        query += ' AND mb.book_name like :book_name'
+        args['book_name'] = '%'+data['book_name']+'%'
+
+    if data['author_name']:
+        query += ' AND mb.author_name like :author_name'
+        args['author_name'] = '%'+data['author_name']+'%'
+
+    if data['publisher_name']:
+        query += ' AND mbp.publisher_name like :publisher_name'
+        args['publisher_name'] = '%'+data['publisher_name']+'%'
+
+    if data['published_from']:
+        query += ' AND mb.published_at >= :published_from'
+        args['published_from'] = data['published_from']
+
+    if data['published_to']:
+        query += ' AND mb.published_at <= :published_to'
+        args['published_to'] = data['published_to']
+
+    query += '''
         GROUP BY mb.id
         LIMIT :limit OFFSET :offset
         '''
-    df = sql.select(query, dict(limit=limit, offset=offset))
+
+    df = sql.select(query, args)
     ans = df.to_json(orient='records')
     obj = json.loads(ans) # if empty, ans is string "[]"
     return {'code': 0, 'status': 'success', 'msg': 'searched.', 'data': obj}
