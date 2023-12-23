@@ -71,7 +71,7 @@ class TestBook:
     # =========================
     def test_search_success(self, client):
         """ SUCCESS """
-        rv = client.post('/book/search', json=dict(offset=0))
+        rv = client.post('/book/search', json=dict(offset=0, book_name='', author_name='', publisher_name='', published_from='', published_to=''))
         assert 200 == rv.status_code
         # assert rv.json == {'code': 0, 'status': 'success', 'msg': 'searched.', 'data': '[]'}
         print(rv.json)
