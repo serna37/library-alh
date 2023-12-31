@@ -107,7 +107,7 @@ erDiagram
 |--|--|--|--|--|--|
 |<ul><li>[x] </ul>|`POST`|`/sign/up`|sign up|no auth||
 |<ul><li>[x] </ul>|`POST`|`/sign/in`|sign in|no auth||
-|<ul><li>[wip] </ul>|`POST`|`/user/profile`|get profile.|auth required||
+|<ul><li>[x] </ul>|`POST`|`/user/profile`|get profile.|auth required||
 |<ul><li>[x] </ul>|`POST`|`/book/addpublisher`|add publishers.|auth required||
 |<ul><li>[ ] </ul>|`POST`|`/book/getpublishers`|get publishers.|auth required||
 |<ul><li>[ ] </ul>|`POST`|`/book/getocr`|get ocr about book.|auth required||
