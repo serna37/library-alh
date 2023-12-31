@@ -13,6 +13,9 @@ def authentication():
         def wrapper(*args, **kwargs):
             token = request.cookies.get('token', '')
             header = request.headers.get('x-auth-header', '')
+            # state hlder
+            if token == '':
+                token = request.headers.get('token', '')
             dt = dict(mail=header, token=token)
             df = sql.select('SELECT COUNT(id) FROM trn_users WHERE mail_address = :mail AND token = :token', dt)
             if df.iat[0, 0] == 0:

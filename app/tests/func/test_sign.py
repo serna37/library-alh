@@ -48,7 +48,9 @@ class TestSign():
         rv = self.signup(client, *self.OK_REQ)
         df = sql.select('SELECT * FROM trn_users WHERE mail_address = :str', {'str': self.OK_REQ[1]})
         assert 200 == rv.status_code
-        assert rv.json == {'code': 0, 'status': 'success', 'msg': 'sign up success.'}
+        assert rv.json['code'] == 0
+        assert rv.json['status'] == 'success'
+        assert rv.json['msg'] == 'sign up success.'
         assert rv.headers['x-auth-header'] == self.OK_REQ[1]
         assert 'token=' in rv.headers['Set-Cookie']
         assert df.loc[0, 'user_name'] == self.OK_REQ[0]
@@ -121,7 +123,9 @@ class TestSign():
         """
         rv = self.signin(client, self.OK_REQ2[1], self.OK_REQ2[2])
         assert rv.status_code == 200
-        assert rv.json == {'code': 0, 'status': 'success', 'msg': 'sign in success.'}
+        assert rv.json['code'] == 0
+        assert rv.json['status'] == 'success'
+        assert rv.json['msg'] == 'sign in success.'
         assert rv.headers['x-auth-header'] == self.OK_REQ2[1]
         assert 'token=' in rv.headers['Set-Cookie']
 

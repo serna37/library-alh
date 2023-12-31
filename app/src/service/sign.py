@@ -18,7 +18,7 @@ def singup(data):
     df = [data]
     sql.insert('trn_users', df)
     # 5. return auth info
-    return {'code': 0, 'status': 'success', 'msg': 'sign up success.'}, data['mail_address'], token
+    return {'code': 0, 'status': 'success', 'msg': 'sign up success.', 'token': token}, data['mail_address'], token
 
 def signin(data):
     # 1. get salt by mail address
@@ -30,7 +30,8 @@ def signin(data):
     if not _hash_check(data['password'], password):
         return {'code': 20, 'status': 'error', 'msg': 'access denied.'}, '', ''
     # 3. return auth info
-    return {'code': 0, 'status': 'success', 'msg': 'sign in success.'}, df.loc[0, 'mail_address'], df.loc[0, 'token']
+    token = df.loc[0, 'token']
+    return {'code': 0, 'status': 'success', 'msg': 'sign in success.', 'token': token}, df.loc[0, 'mail_address'], token
 
 # ==================================================
 # internal functions

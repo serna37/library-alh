@@ -10,7 +10,8 @@ load_dotenv(dotenv_path=env_path)
 app = Flask(__name__)
 
 # add whitelist for CORS allow
-with open(Path(__file__).resolve().parent.joinpath('../whitelist.txt'), 'r') as f:
+with open(Path(__file__).resolve().parent.joinpath('../whitelist.txt'),
+          'r') as f:
     CORS(app, origins=f.read().split('\n'), methods=['OPTIONS', 'GET', 'POST'])
 
 # DDL
@@ -21,4 +22,5 @@ sql.create_all()
 # regist facade
 from src.facade import ping as _
 from src.facade import sign as _
+from src.facade import user as _
 from src.facade import book as _
