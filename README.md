@@ -140,4 +140,10 @@ cd ~/git/library-alh \
 cd ~/git/library-alh
 sudo docker build -t library-alh:latest .
 sudo docker run -p 8282:8282 library-alh:latest
+
+# recommend
+git pull \
+&& sudo docker build -t library-alh:latest . \
+&& sudo docker run -d -p 8282:8282 library-alh:latest
+
 ```
