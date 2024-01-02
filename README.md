@@ -136,4 +136,8 @@ python app/server.py
 cd ~/git/library-alh \
 && docker build -t library-alh:latest . \
 && docker images | grep -e 'library-alh' -e 'latest' | awk '{print $3}' | xargs -I{} docker run {}
+
+cd ~/git/library-alh
+sudo docker build -t library-alh:latest .
+sudo docker run -d -p 8282:8282 library-alh:latest
 ```
