@@ -27,7 +27,7 @@ addpub_schema = {
 }
 
 
-@app.route('/book/addpublisher', methods=['POST'])
+@app.route('/library/book/addpublisher', methods=['POST'])
 @core.authentication()
 @core.validation(addpub_schema)
 def donation():
@@ -88,7 +88,7 @@ search_schema = {
 }
 
 
-@app.route('/book/search', methods=['POST'])
+@app.route('/library/book/search', methods=['POST'])
 @core.validation(search_schema)
 def search():
     res = service.search(request.json)
@@ -101,7 +101,7 @@ def search():
 detail_schema = {'book_id': {'required': True}}
 
 
-@app.route('/book/detail', methods=['POST'])
+@app.route('/library/book/detail', methods=['POST'])
 @core.validation(detail_schema)
 def detail():
     user_id = request.headers.get('x-auth-header', '')

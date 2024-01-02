@@ -28,7 +28,7 @@ signup_schema = {
     }
 }
 
-@app.route('/sign/up', methods=['POST'])
+@app.route('/library/sign/up', methods=['POST'])
 @core.validation(signup_schema)
 def signup():
 
@@ -55,7 +55,7 @@ signin_schema = {
     }
 }
 
-@app.route('/sign/in', methods=['POST'])
+@app.route('/library/sign/in', methods=['POST'])
 @core.validation(signin_schema)
 def signin():
 

@@ -17,7 +17,7 @@ book_rental = {
 
 
 @core.validation(book_rental)
-@app.route('/action/rental', methods=['POST'])
+@app.route('/library/action/rental', methods=['POST'])
 @core.authentication()
 def rental():
     user_id = request.headers.get('x-auth-header', '')
@@ -27,7 +27,7 @@ def rental():
 
 
 @core.validation(book_rental)
-@app.route('/action/return', methods=['POST'])
+@app.route('/library/action/return', methods=['POST'])
 @core.authentication()
 def book_return():
     user_id = request.headers.get('x-auth-header', '')
@@ -43,7 +43,7 @@ comment_schema = {
     }
 }
 @core.validation(comment_schema)
-@app.route('/action/comment', methods=['POST'])
+@app.route('/library/action/comment', methods=['POST'])
 @core.authentication()
 def add_comment():
     user_id = request.headers.get('x-auth-header', '')

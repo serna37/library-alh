@@ -6,7 +6,7 @@ from src.service import user as service
 # ===============
 # get user profile
 # ===============
-@app.route('/user/profile', methods=['POST'])
+@app.route('/library/user/profile', methods=['POST'])
 @core.authentication()
 def getprofile():
     user_id = request.headers.get('x-auth-header', '')
@@ -14,7 +14,7 @@ def getprofile():
     return jsonify(res), 200
 
 
-@app.route('/user/rentalstate', methods=['POST'])
+@app.route('/library/user/rentalstate', methods=['POST'])
 @core.authentication()
 def getrentalstate():
     user_id = request.headers.get('x-auth-header', '')
