@@ -6,7 +6,7 @@ COPY ./app /asset/app
 
 RUN python -m pip install -U pip \
     && python -m pip install -r requirements.txt \
-    && touch app/data.db \
-    && chmod 777 app/data.db
+    && touch data.db \
+    && chmod 777 data.db
 
 CMD ["python", "server.py"]
