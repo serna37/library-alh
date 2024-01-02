@@ -63,8 +63,6 @@ def _insert(con, table, df_json):
 def _get_db():
     """Open connection
     """
-    print(os.environ.get('DATABASE', ''))
-    print(os.environ.get('DATABASE', 'app/data.db'))
     con = sqlite3.connect(os.environ.get('DATABASE', 'app/data.db'))
     return con
 
