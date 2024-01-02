@@ -10,4 +10,4 @@ RUN cd app \
     && touch data.db \
     && chmod 777 data.db
 
-CMD ["python", "server.py"]
+CMD ["python", "app/server.py"]
