@@ -83,6 +83,12 @@ def _exe(func, *args):
     con.close()
     return res, con
 
+def delete(sql, json):
+    con = _get_db()
+    con.execute(sql, json)
+    con.commit()
+    con.close()
+
 
 
 #def insert(query, data_json):

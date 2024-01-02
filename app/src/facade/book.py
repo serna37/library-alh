@@ -26,12 +26,14 @@ addpub_schema = {
     }
 }
 
+
 @app.route('/book/addpublisher', methods=['POST'])
 @core.authentication()
 @core.validation(addpub_schema)
 def donation():
     res = service.addpublisher(request.json)
     return jsonify(res), 200
+
 
 # ===============
 # getpublishers
@@ -84,6 +86,8 @@ search_schema = {
         'maxlength': 255
     }
 }
+
+
 @app.route('/book/search', methods=['POST'])
 @core.validation(search_schema)
 def search():
@@ -94,31 +98,12 @@ def search():
 # ===============
 # detail
 # ===============
-# TODO
-detail_schema = {
-    'publisher_cd': {
-        'type': 'string',
-        'required': True,
-        'empty': False,
-        'maxlength': 50
-    },
-    'publisher_name': {
-        'type': 'string',
-        'required': True,
-        'empty': False,
-        'maxlength': 50
-    },
-    'img': {
-        'type': 'string',
-        'required': True,
-        'empty': False
-    }
-}
+detail_schema = {'book_id': {'required': True}}
+
+
 @app.route('/book/detail', methods=['POST'])
 @core.validation(detail_schema)
 def detail():
-    # res = service.addpublisher(request.json)
-    res = None
+    user_id = request.headers.get('x-auth-header', '')
+    res = service.get_detail(user_id, request.json)
     return jsonify(res), 200
-
-
