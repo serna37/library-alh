@@ -142,6 +142,11 @@ sudo docker build -t library-alh:latest .
 sudo docker run -p 8282:8282 library-alh:latest
 
 # recommend
+sudo docker ps -a
+sudo docker rm {id1} {id2} ...
+sudo docker images
+sudo docker rmi {id1} {id2} ...
+
 git pull \
 && sudo docker build -t library-alh:latest . \
 && sudo docker run -d -p 8282:8282 library-alh:latest
