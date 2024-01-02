@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS trn_remarks (
     id INTEGER PRIMARY KEY AUTOINCREMENT
-    , mark_type TEXT NOT NULL
+    , mark_type TEXT NOT NULL -- comment / star / fav
     , book_id INTEGER NOT NULL
     , user_id INTEGER NOT NULL
     , comments TEXT NOT NULL

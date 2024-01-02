@@ -113,4 +113,18 @@ def get_detail(user_id, data):
         rent_num = 0
 
     remain = all.iat[0, 0] - rent_num
-    return {'code': 0, 'status': 'success', 'num': str(remain), 'you_rental': you_rental}
+
+    comment_query = '''
+    SELECT
+        tr.comments
+        , tu.user_name
+    FROM trn_remarks tr
+    INNER JOIN trn_users tu ON tr.user_id = tu.mail_address
+    AND tr.book_id = :book_id
+    AND tr.mark_type = 'comment'
+    '''
+    com = sql.select(comment_query, entity)
+    com_js = com.to_json(orient='records')
+    com_obj = json.loads(com_js)  # if empty, ans is string "[]"
+
+    return {'code': 0, 'status': 'success', 'num': str(remain), 'you_rental': you_rental, 'comments': com_obj}
