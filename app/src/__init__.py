@@ -17,10 +17,11 @@ with open(Path(__file__).resolve().parent.joinpath('../whitelist.txt'),
 # DDL
 sql.create_all()
 # insert if exists
-# sql.munpilate_all()
+#sql.munpilate_all()
 
 # regist facade
 from src.facade import ping as _
 from src.facade import sign as _
 from src.facade import user as _
 from src.facade import book as _
+from src.facade import action as _
