@@ -143,6 +143,7 @@ sudo docker run -p 8282:8282 library-alh:latest
 
 # recommend
 sudo docker ps -a
+sudo docker stop {running container id}
 sudo docker rm {id1} {id2} ...
 sudo docker images
 sudo docker rmi {id1} {id2} ...
